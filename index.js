@@ -99,7 +99,7 @@ cena.addEventListener("click", () => {
 //Carrito de compras
 
 
-const carrito = document.querySelector(".carrito-compras")
+const carrito = document.querySelector(".carrito-img")
 const carritoClick = document.querySelector(".carrito-click")
 
 carrito.addEventListener("click", () => {
@@ -634,3 +634,13 @@ btnAgregar9.addEventListener("click", () => {
     }
 }
 )
+
+//Contador 
+
+const contador = document.querySelector(".carrito-cantidad")
+
+if(carritoClick.childElementCount > 1){
+    contador.textContent = Number(contador.textContent) + 1
+} else {
+    contador.style.display = "none"
+}
