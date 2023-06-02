@@ -1,3 +1,9 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 nav{
     width: 100%;
     display: flex;
@@ -20,6 +26,7 @@ nav{
 
 .carrito-compras{
     margin-left: 30%;
+
 }
 
 .logo{
@@ -27,6 +34,65 @@ nav{
     height: 100px;
 }
 
+.carrito-img{
+    width: 30px;
+    height: 30px;
+}
+
+.carrito-cantidad{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    background-color: red;
+    border-radius: 500%;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+}
+
+.carrito-click{
+    position: absolute;
+    right: 0;
+    background-color: white;
+    border: 2px solid black;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.carrito-menu{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.carrito-menu img{
+    width: 100px;
+    height: 100px;
+    margin: 10px 10px;
+}
+
+.menu-cantidad{
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+.menu-cantidad button{
+    margin: 0px 10px;
+}
+
+.total{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid black;
+    position: absolute;
+    bottom: 0;
+}
 
 .menu-eleccion{
     width: 100%;
