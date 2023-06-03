@@ -2,6 +2,7 @@ const desayuno = document.querySelector(".desayuno")
 const almuerzo = document.querySelector(".almuerzo")
 const cena = document.querySelector(".cena")
 const total = document.querySelector(".total")
+    const sumaTotal = document.createElement("span");
 
 //Traer los platos
 
@@ -136,7 +137,10 @@ function agregarPlatoAlCarrito(costo, plato) {
     btn2.classList.add("btn-mas");
     btn2.textContent = "+";
     const p2 = document.createElement("p");
-    p2.textContent = `Precio: ${costo}`;
+    p2.textContent = `Precio: `;
+    const precio = document.createElement("span");
+    precio.textContent = costo;
+    precio.classList.add("precio");
 
     const btnEliminar = document.createElement("button");
     btnEliminar.textContent = "Eliminar";
@@ -144,7 +148,7 @@ function agregarPlatoAlCarrito(costo, plato) {
     btn1.addEventListener("click", (event) => {
       if (span.textContent >= 1) {
         span.textContent = Number(span.textContent) - 1;
-        p2.textContent = `Precio: ${costo * span.textContent}`;
+        precio.textContent = costo * span.textContent;
     }
       event.stopPropagation();
     });
@@ -152,10 +156,10 @@ function agregarPlatoAlCarrito(costo, plato) {
     btn2.addEventListener("click", (event) => {
       span.textContent = Number(span.textContent) + 1;
       event.stopPropagation();
-      p2.textContent = `Precio: ${costo * span.textContent}`;
+      precio.textContent = costo * span.textContent;
     });
 
-    div2.append(btn1, span, btn2, p2);
+    div2.append(btn1, span, btn2, p2, precio);
     div.append(btnEliminar, img, p, div2);
 
     btnEliminar.addEventListener("click", (event) => {
@@ -168,6 +172,20 @@ function agregarPlatoAlCarrito(costo, plato) {
     } else {
       carritoClick.appendChild(div);
     }
+
+    //Total
+      function Total(){
+      const vacio = document.querySelector(".vacio");
+      vacio.innerHTML = "Total: ";
+      let suma = [];
+      for(let i=0; i < document.getElementsByClassName("precio").length; i++){
+        suma.push(Number(document.getElementsByClassName("precio")[i].innerHTML))
+      }
+      sumaTotal.innerHTML = suma.reduce((a,b) => a + b, 0);
+    }
+
+    Total();
+    total.appendChild(sumaTotal);
   };
 
 btnAgregar1.addEventListener("click", () => {
@@ -206,4 +224,7 @@ btnAgregar9.addEventListener("click", () => {
   agregarPlatoAlCarrito(4000, platos[8]);
   
 });
+
+//Suma total
+
 
