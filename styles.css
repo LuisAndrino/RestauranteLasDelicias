@@ -86,17 +86,18 @@ nav{
 }
 
 .total{
-    width: 100%;
+    width: 500px;
     display: flex;
     justify-content: space-around;
-    border: 1px solid black;
+    border: 2px solid black;
     position: absolute;
-    bottom: 0;
+    bottom: -20px;
+    background-color: white;
 }
 
 .menu-eleccion{
     width: 100%;
-    display: flex;
+    display: flex;  
     flex-direction: row;
     justify-content: space-evenly;
     background-color: red;

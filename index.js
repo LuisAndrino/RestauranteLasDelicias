@@ -1,7 +1,7 @@
 const desayuno = document.querySelector(".desayuno")
 const almuerzo = document.querySelector(".almuerzo")
 const cena = document.querySelector(".cena")
-
+const total = document.querySelector(".total")
 
 //Traer los platos
 
@@ -117,530 +117,93 @@ const btnAgregar7 = document.querySelector(".btn-agregar7")
 const btnAgregar8 = document.querySelector(".btn-agregar8")
 const btnAgregar9 = document.querySelector(".btn-agregar9")
 
+function agregarPlatoAlCarrito(costo, plato) {
+    const div = document.createElement("div");
+    div.classList.add("carrito-menu");
+    const img = document.createElement("img");
+    img.src = plato.img;
+    const p = document.createElement("p");
+    p.textContent = plato.nombre;
+    const div2 = document.createElement("div");
+    div2.classList.add("menu-cantidad");
+    const btn1 = document.createElement("button");
+    btn1.classList.add("btn-menos");
+    btn1.textContent = "-";
+    const span = document.createElement("span");
+    span.classList.add("cantidad");
+    span.textContent = 1;
+    const btn2 = document.createElement("button");
+    btn2.classList.add("btn-mas");
+    btn2.textContent = "+";
+    const p2 = document.createElement("p");
+    p2.textContent = `Precio: ${costo}`;
+
+    const btnEliminar = document.createElement("button");
+    btnEliminar.textContent = "Eliminar";
+
+    btn1.addEventListener("click", (event) => {
+      if (span.textContent >= 1) {
+        span.textContent = Number(span.textContent) - 1;
+        p2.textContent = `Precio: ${costo * span.textContent}`;
+    }
+      event.stopPropagation();
+    });
+
+    btn2.addEventListener("click", (event) => {
+      span.textContent = Number(span.textContent) + 1;
+      event.stopPropagation();
+      p2.textContent = `Precio: ${costo * span.textContent}`;
+    });
+
+    div2.append(btn1, span, btn2, p2);
+    div.append(btnEliminar, img, p, div2);
+
+    btnEliminar.addEventListener("click", (event) => {
+      div.remove();
+      event.stopPropagation();
+    });
+
+    if (carritoClick.innerHTML.includes(plato.nombre)) {
+      alert("Este plato ya se encuentra en el carrito");
+    } else {
+      carritoClick.appendChild(div);
+    }
+  };
+
 btnAgregar1.addEventListener("click", () => {
-    const cost = 100
-
-    const div = document.createElement("div")
-    div.classList.add("carrito-menu")
-    const img = document.createElement("img")
-    img.src = platos[0].img
-    const p = document.createElement("p")
-    p.textContent = platos[0].nombre
-    const div2 = document.createElement("div")
-    div2.classList.add("menu-cantidad")
-    const btn1 = document.createElement("button")
-    btn1.classList.add("btn-menos")
-    btn1.textContent = "-"
-    const span = document.createElement("span")
-    span.classList.add("cantidad")
-    span.textContent = 1
-    const btn2 = document.createElement("button")
-    btn2.classList.add("btn-mas")
-    btn2.textContent = "+"
-    const p2 = document.createElement("p")
-    p2.textContent = `Precio: ${cost}`
-
-    const btnEliminar = document.createElement("button")
-    btnEliminar.textContent = "Eliminar"
-
-    btn1.addEventListener("click", (event) => {
-        if(span.textContent >= 1){
-            span.textContent = Number(span.textContent) - 1
-            p2.textContent = `Precio: ${cost * span.textContent}`
-        }
-        event.stopPropagation()
-    })
-
-    btn2.addEventListener("click", (event) => {
-        span.textContent = Number(span.textContent) + 1
-        event.stopPropagation()
-        p2.textContent = `Precio: ${cost * span.textContent}`
-    })
-
-    
-    div2.append(btn1, span, btn2, p2)
-    div.append(btnEliminar,img, p, div2)  
-    
-    btnEliminar.addEventListener("click", (event) => {
-        div.remove()
-        event.stopPropagation()
-    })
-    
-    if(carritoClick.innerHTML.includes(platos[0].nombre)){
-        alert("Este plato ya se encuentra en el carrito")
-    } else {
-        carritoClick.appendChild(div)
-    }
-})
-
+  agregarPlatoAlCarrito(1000, platos[0]);
+  
+});
 btnAgregar2.addEventListener("click", () => {
-    const cost = 300
-
-    const div = document.createElement("div")
-    div.classList.add("carrito-menu")
-    const img = document.createElement("img")
-    img.src = platos[1].img
-    const p = document.createElement("p")
-    p.textContent = platos[1].nombre
-    const div2 = document.createElement("div")
-    div2.classList.add("menu-cantidad")
-    const btn1 = document.createElement("button")
-    btn1.classList.add("btn-menos")
-    btn1.textContent = "-"
-    const span = document.createElement("span")
-    span.classList.add("cantidad")
-    span.textContent = 1
-    const btn2 = document.createElement("button")
-    btn2.classList.add("btn-mas")
-    btn2.textContent = "+"
-    const p2 = document.createElement("p")
-    p2.textContent = `Precio: ${cost}`
-
-    const btnEliminar = document.createElement("button")
-    btnEliminar.textContent = "Eliminar"
-
-    btn1.addEventListener("click", (event) => {
-        if(span.textContent >= 1){
-            span.textContent = Number(span.textContent) - 1
-            p2.textContent = `Precio: ${cost * span.textContent}`
-        }
-        event.stopPropagation()
-    })
-
-    btn2.addEventListener("click", (event) => {
-        span.textContent = Number(span.textContent) + 1
-        event.stopPropagation()
-        p2.textContent = `Precio: ${cost * span.textContent}`
-    })
-
-    
-    div2.append(btn1, span, btn2, p2)
-    div.append(btnEliminar,img, p, div2)  
-    
-    btnEliminar.addEventListener("click", (event) => {
-        div.remove()
-        event.stopPropagation()
-    })
-    
-    if(carritoClick.innerHTML.includes(platos[1].nombre)){
-        alert("Este plato ya se encuentra en el carrito")
-    } else {
-        carritoClick.appendChild(div)
-    }
-}
-)
-
+  agregarPlatoAlCarrito(2000, platos[1]);
+  
+});
 btnAgregar3.addEventListener("click", () => {
-    const cost = 50
-
-    const div = document.createElement("div")
-    div.classList.add("carrito-menu")
-    const img = document.createElement("img")
-    img.src = platos[2].img
-    const p = document.createElement("p")
-    p.textContent = platos[2].nombre
-    const div2 = document.createElement("div")
-    div2.classList.add("menu-cantidad")
-    const btn1 = document.createElement("button")
-    btn1.classList.add("btn-menos")
-    btn1.textContent = "-"
-    const span = document.createElement("span")
-    span.classList.add("cantidad")
-    span.textContent = 1
-    const btn2 = document.createElement("button")
-    btn2.classList.add("btn-mas")
-    btn2.textContent = "+"
-    const p2 = document.createElement("p")
-    p2.textContent = `Precio: ${cost}`
-
-    const btnEliminar = document.createElement("button")
-    btnEliminar.textContent = "Eliminar"
-
-    btn1.addEventListener("click", (event) => {
-        if(span.textContent >= 1){
-            span.textContent = Number(span.textContent) - 1
-            p2.textContent = `Precio: ${cost * span.textContent}`
-        }
-        event.stopPropagation()
-    })
-
-    btn2.addEventListener("click", (event) => {
-        span.textContent = Number(span.textContent) + 1
-        event.stopPropagation()
-        p2.textContent = `Precio: ${cost * span.textContent}`
-    })
-
-    
-    div2.append(btn1, span, btn2, p2)
-    div.append(btnEliminar,img, p, div2)  
-    
-    btnEliminar.addEventListener("click", (event) => {
-        div.remove()
-        event.stopPropagation()
-    })
-    
-    if(carritoClick.innerHTML.includes(platos[2].nombre)){
-        alert("Este plato ya se encuentra en el carrito")
-    } else {
-        carritoClick.appendChild(div)
-    }
-}
-)
-
+  agregarPlatoAlCarrito(3000, platos[2]);
+  
+});
 btnAgregar4.addEventListener("click", () => {
-    const cost = 75
-
-    const div = document.createElement("div")
-    div.classList.add("carrito-menu")
-    const img = document.createElement("img")
-    img.src = platos[3].img
-    const p = document.createElement("p")
-    p.textContent = platos[3].nombre
-    const div2 = document.createElement("div")
-    div2.classList.add("menu-cantidad")
-    const btn1 = document.createElement("button")
-    btn1.classList.add("btn-menos")
-    btn1.textContent = "-"
-    const span = document.createElement("span")
-    span.classList.add("cantidad")
-    span.textContent = 1
-    const btn2 = document.createElement("button")
-    btn2.classList.add("btn-mas")
-    btn2.textContent = "+"
-    const p2 = document.createElement("p")
-    p2.textContent = `Precio: ${cost}`
-
-    const btnEliminar = document.createElement("button")
-    btnEliminar.textContent = "Eliminar"
-
-    btn1.addEventListener("click", (event) => {
-        if(span.textContent >= 1){
-            span.textContent = Number(span.textContent) - 1
-            p2.textContent = `Precio: ${cost * span.textContent}`
-        }
-        event.stopPropagation()
-    })
-
-    btn2.addEventListener("click", (event) => {
-        span.textContent = Number(span.textContent) + 1
-        event.stopPropagation()
-        p2.textContent = `Precio: ${cost * span.textContent}`
-    })
-
-    
-    div2.append(btn1, span, btn2, p2)
-    div.append(btnEliminar,img, p, div2)  
-    
-    btnEliminar.addEventListener("click", (event) => {
-        div.remove()
-        event.stopPropagation()
-    })
-    
-    if(carritoClick.innerHTML.includes(platos[3].nombre)){
-        alert("Este plato ya se encuentra en el carrito")
-    } else {
-        carritoClick.appendChild(div)
-    }
-}
-)
-
+  agregarPlatoAlCarrito(4000, platos[3]);
+  
+});
 btnAgregar5.addEventListener("click", () => {
-
-    const cost = 58
-
-    const div = document.createElement("div")
-    div.classList.add("carrito-menu")
-    const img = document.createElement("img")
-    img.src = platos[4].img
-    const p = document.createElement("p")
-    p.textContent = platos[4].nombre
-    const div2 = document.createElement("div")
-    div2.classList.add("menu-cantidad")
-    const btn1 = document.createElement("button")
-    btn1.classList.add("btn-menos")
-    btn1.textContent = "-"
-    const span = document.createElement("span")
-    span.classList.add("cantidad")
-    span.textContent = 1
-    const btn2 = document.createElement("button")
-    btn2.classList.add("btn-mas")
-    btn2.textContent = "+"
-    const p2 = document.createElement("p")
-    p2.textContent = `Precio: ${cost}`
-
-    const btnEliminar = document.createElement("button")
-    btnEliminar.textContent = "Eliminar"
-
-    btn1.addEventListener("click", (event) => {
-        if(span.textContent >= 1){
-            span.textContent = Number(span.textContent) - 1
-            p2.textContent = `Precio: ${cost * span.textContent}`
-        }
-        event.stopPropagation()
-    })
-
-    btn2.addEventListener("click", (event) => {
-        span.textContent = Number(span.textContent) + 1
-        event.stopPropagation()
-        p2.textContent = `Precio: ${cost * span.textContent}`
-    })
-
-    
-    div2.append(btn1, span, btn2, p2)
-    div.append(btnEliminar,img, p, div2)  
-    
-    btnEliminar.addEventListener("click", (event) => {
-        div.remove()
-        event.stopPropagation()
-    })
-    
-    if(carritoClick.innerHTML.includes(platos[4].nombre)){
-        alert("Este plato ya se encuentra en el carrito")
-    } else {
-        carritoClick.appendChild(div)
-    }
-}
-)
-
+  agregarPlatoAlCarrito(5000, platos[4]);
+  
+});
 btnAgregar6.addEventListener("click", () => {
-    
-        const cost = 900
-    
-        const div = document.createElement("div")
-        div.classList.add("carrito-menu")
-        const img = document.createElement("img")
-        img.src = platos[5].img
-        const p = document.createElement("p")
-        p.textContent = platos[5].nombre
-        const div2 = document.createElement("div")
-        div2.classList.add("menu-cantidad")
-        const btn1 = document.createElement("button")
-        btn1.classList.add("btn-menos")
-        btn1.textContent = "-"
-        const span = document.createElement("span")
-        span.classList.add("cantidad")
-        span.textContent = 1
-        const btn2 = document.createElement("button")
-        btn2.classList.add("btn-mas")
-        btn2.textContent = "+"
-        const p2 = document.createElement("p")
-        p2.textContent = `Precio: ${cost}`
-    
-        const btnEliminar = document.createElement("button")
-        btnEliminar.textContent = "Eliminar"
-    
-        btn1.addEventListener("click", (event) => {
-            if(span.textContent >= 1){
-                span.textContent = Number(span.textContent) - 1
-                p2.textContent = `Precio: ${cost * span.textContent}`
-            }
-            event.stopPropagation()
-        })
-    
-        btn2.addEventListener("click", (event) => {
-            span.textContent = Number(span.textContent) + 1
-            event.stopPropagation()
-            p2.textContent = `Precio: ${cost * span.textContent}`
-        })
-    
-        
-        div2.append(btn1, span, btn2, p2)
-        div.append(btnEliminar,img, p, div2)  
-        
-        btnEliminar.addEventListener("click", (event) => {
-            div.remove()
-            event.stopPropagation()
-        })
-        
-        if(carritoClick.innerHTML.includes(platos[5].nombre)){
-            alert("Este plato ya se encuentra en el carrito")
-        } else {
-            carritoClick.appendChild(div)
-        }
-    }
-
-)
-
+  agregarPlatoAlCarrito(6000, platos[5]);
+  
+});
 btnAgregar7.addEventListener("click", () => {
-
-    const cost = 21
-
-    const div = document.createElement("div")
-    div.classList.add("carrito-menu")
-    const img = document.createElement("img")
-    img.src = platos[6].img
-    const p = document.createElement("p")
-    p.textContent = platos[6].nombre
-    const div2 = document.createElement("div")
-    div2.classList.add("menu-cantidad")
-    const btn1 = document.createElement("button")
-    btn1.classList.add("btn-menos")
-    btn1.textContent = "-"
-    const span = document.createElement("span")
-    span.classList.add("cantidad")
-    span.textContent = 1
-    const btn2 = document.createElement("button")
-    btn2.classList.add("btn-mas")
-    btn2.textContent = "+"
-    const p2 = document.createElement("p")
-    p2.textContent = `Precio: ${cost}`
-
-    const btnEliminar = document.createElement("button")
-    btnEliminar.textContent = "Eliminar"
-
-    btn1.addEventListener("click", (event) => {
-        if(span.textContent >= 1){
-            span.textContent = Number(span.textContent) - 1
-            p2.textContent = `Precio: ${cost * span.textContent}`
-        }
-        event.stopPropagation()
-    })
-
-    btn2.addEventListener("click", (event) => {
-        span.textContent = Number(span.textContent) + 1
-        event.stopPropagation()
-        p2.textContent = `Precio: ${cost * span.textContent}`
-    })
-
-    
-    div2.append(btn1, span, btn2, p2)
-    div.append(btnEliminar,img, p, div2)  
-    
-    btnEliminar.addEventListener("click", (event) => {
-        div.remove()
-        event.stopPropagation()
-    })
-    
-    if(carritoClick.innerHTML.includes(platos[6].nombre)){
-        alert("Este plato ya se encuentra en el carrito")
-    } else {
-        carritoClick.appendChild(div)
-    }
-}
-)
-
+  agregarPlatoAlCarrito(2000, platos[6]);
+  
+});
 btnAgregar8.addEventListener("click", () => {
-
-    const cost = 2131
-
-    const div = document.createElement("div")
-    div.classList.add("carrito-menu")
-    const img = document.createElement("img")
-    img.src = platos[7].img
-    const p = document.createElement("p")
-    p.textContent = platos[7].nombre
-    const div2 = document.createElement("div")
-    div2.classList.add("menu-cantidad")
-    const btn1 = document.createElement("button")
-    btn1.classList.add("btn-menos")
-    btn1.textContent = "-"
-    const span = document.createElement("span")
-    span.classList.add("cantidad")
-    span.textContent = 1
-    const btn2 = document.createElement("button")
-    btn2.classList.add("btn-mas")
-    btn2.textContent = "+"
-    const p2 = document.createElement("p")
-    p2.textContent = `Precio: ${cost}`
-
-    const btnEliminar = document.createElement("button")
-    btnEliminar.textContent = "Eliminar"
-
-    btn1.addEventListener("click", (event) => {
-        if(span.textContent >= 1){
-            span.textContent = Number(span.textContent) - 1
-            p2.textContent = `Precio: ${cost * span.textContent}`
-        }
-        event.stopPropagation()
-    })
-
-    btn2.addEventListener("click", (event) => {
-        span.textContent = Number(span.textContent) + 1
-        event.stopPropagation()
-        p2.textContent = `Precio: ${cost * span.textContent}`
-    })
-
-    
-    div2.append(btn1, span, btn2, p2)
-    div.append(btnEliminar,img, p, div2)  
-    
-    btnEliminar.addEventListener("click", (event) => {
-        div.remove()
-        event.stopPropagation()
-    })
-    
-    if(carritoClick.innerHTML.includes(platos[7].nombre)){
-        alert("Este plato ya se encuentra en el carrito")
-    } else {
-        carritoClick.appendChild(div)
-    }
-}
-)
-
+  agregarPlatoAlCarrito(3000, platos[7]);
+  
+});
 btnAgregar9.addEventListener("click", () => {
+  agregarPlatoAlCarrito(4000, platos[8]);
+  
+});
 
-    const cost = 1021
-
-    const div = document.createElement("div")
-    div.classList.add("carrito-menu")
-    const img = document.createElement("img")
-    img.src = platos[8].img
-    const p = document.createElement("p")
-    p.textContent = platos[8].nombre
-    const div2 = document.createElement("div")
-    div2.classList.add("menu-cantidad")
-    const btn1 = document.createElement("button")
-    btn1.classList.add("btn-menos")
-    btn1.textContent = "-"
-    const span = document.createElement("span")
-    span.classList.add("cantidad")
-    span.textContent = 1
-    const btn2 = document.createElement("button")
-    btn2.classList.add("btn-mas")
-    btn2.textContent = "+"
-    const p2 = document.createElement("p")
-    p2.textContent = `Precio: ${cost}`
-
-    const btnEliminar = document.createElement("button")
-    btnEliminar.textContent = "Eliminar"
-
-    btn1.addEventListener("click", (event) => {
-        if(span.textContent >= 1){
-            span.textContent = Number(span.textContent) - 1
-            p2.textContent = `Precio: ${cost * span.textContent}`
-        }
-        event.stopPropagation()
-    })
-
-    btn2.addEventListener("click", (event) => {
-        span.textContent = Number(span.textContent) + 1
-        event.stopPropagation()
-        p2.textContent = `Precio: ${cost * span.textContent}`
-    })
-
-    
-    div2.append(btn1, span, btn2, p2)
-    div.append(btnEliminar,img, p, div2)  
-    
-    btnEliminar.addEventListener("click", (event) => {
-        div.remove()
-        event.stopPropagation()
-    })
-    
-    if(carritoClick.innerHTML.includes(platos[8].nombre)){
-        alert("Este plato ya se encuentra en el carrito")
-    } else {
-        carritoClick.appendChild(div)
-    }
-}
-)
-
-//Contador 
-
-const contador = document.querySelector(".carrito-cantidad")
-
-if(carritoClick.childElementCount > 1){
-    contador.textContent = Number(contador.textContent) + 1
-} else {
-    contador.style.display = "none"
-}
