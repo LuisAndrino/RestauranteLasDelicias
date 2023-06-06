@@ -2,7 +2,7 @@ const desayuno = document.querySelector(".desayuno")
 const almuerzo = document.querySelector(".almuerzo")
 const cena = document.querySelector(".cena")
 const total = document.querySelector(".total")
-    const sumaTotal = document.createElement("span");
+const sumaTotal = document.createElement("span");
 
 //Traer los platos
 
@@ -133,7 +133,7 @@ let carTotal;
 
 function agregarPlatoAlCarrito(plato) {
 
-    function actualizarContadorCarrito() {
+  function actualizarContadorCarrito() {
       carTotal = carritoClick.childElementCount - 1;
       carritoCantidad.textContent = carTotal;
     }
@@ -141,7 +141,7 @@ function agregarPlatoAlCarrito(plato) {
     function actualizarTotal() {
       const pTotal = document.querySelector(".vacio");
       if(carritoClick.childElementCount > 1){
-        pTotal.textContent = `Total: $${carritoTotal}`;
+        pTotal.textContent = `Total: Q${carritoTotal}`;
       } else {
         pTotal.textContent = "Carrito vacio";
       }
@@ -169,19 +169,20 @@ function agregarPlatoAlCarrito(plato) {
     const precio = document.createElement("span");
     precio.textContent = plato.precio;
     precio.classList.add("precio");
-
-    const btnEliminar = document.createElement("button");
-    btnEliminar.textContent = "Eliminar";
-
+    
+    const btnEliminar = document.createElement("img");
+    btnEliminar.src = "icons/close.png";
+    btnEliminar.id = "btn-eliminar"
+    
     btn1.addEventListener("click", () => {
       if (span.textContent >= 1) {
         span.textContent = Number(span.textContent) - 1;
         precio.textContent = plato.precio * span.textContent;
         carritoTotal = carritoTotal - plato.precio;
         actualizarTotal();
-    }
+      }
     });
-
+    
     btn2.addEventListener("click", () => {
       span.textContent = Number(span.textContent) + 1;
       precio.textContent = plato.precio * span.textContent;
@@ -191,66 +192,33 @@ function agregarPlatoAlCarrito(plato) {
 
     div2.append(btn1, span, btn2, p2, precio);
     div.append(btnEliminar, img, p, div2);
-
+    div.classList.add("local");
+    
+    
     btnEliminar.addEventListener("click", () => {
       div.remove();
       carritoTotal = carritoTotal - plato.precio * span.textContent;
       actualizarTotal();
       actualizarContadorCarrito();
     });
-
+    
     if (carritoClick.innerHTML.includes(plato.nombre)) {
       alert("Este plato ya se encuentra en el carrito");
     } else {
       carritoClick.appendChild(div);
     }
-
-    //Total
-    //TODO:
-    //Hacer que el total funcione correctamente
+    
+    
     carritoTotal = carritoTotal + plato.precio;
-    console.log(carritoTotal);
     actualizarTotal();
     actualizarContadorCarrito();
   };
-
-btnAgregar1.addEventListener("click", () => {
-  agregarPlatoAlCarrito(platos[0]);
   
-});
-btnAgregar2.addEventListener("click", () => {
-  agregarPlatoAlCarrito(platos[1]);
-  
-});
-btnAgregar3.addEventListener("click", () => {
-  agregarPlatoAlCarrito(platos[2]);
-  
-});
-btnAgregar4.addEventListener("click", () => {
-  agregarPlatoAlCarrito(platos[3]);
-  
-});
-btnAgregar5.addEventListener("click", () => {
-  agregarPlatoAlCarrito(platos[4]);
-  
-});
-btnAgregar6.addEventListener("click", () => {
-  agregarPlatoAlCarrito(platos[5]);
-  
-});
-btnAgregar7.addEventListener("click", () => {
-  agregarPlatoAlCarrito(platos[6]);
-  
-});
-btnAgregar8.addEventListener("click", () => {
-  agregarPlatoAlCarrito(platos[7]);
-  
-});
-btnAgregar9.addEventListener("click", () => {
-  agregarPlatoAlCarrito(platos[8]);
-  
-});
-
-//Suma total
 
 
+for (let i = 1; i <= 9; i++) {
+  const btnAgregar = document.querySelector(`.btn-agregar${i}`);
+  btnAgregar.addEventListener("click", () => {
+    agregarPlatoAlCarrito(platos[i-1]);
+  });
+}

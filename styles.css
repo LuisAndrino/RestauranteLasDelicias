@@ -65,9 +65,10 @@ nav{
 .carrito-menu{
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    
 }
 
 .carrito-menu img{
@@ -137,4 +138,14 @@ nav{
 
 .ocultar{
     display: none;
+}
+
+#btn-eliminar{
+    width: 12px;
+    height: 12px;
+}
+
+#btn-eliminar:hover{
+    cursor: pointer;
+    filter: invert(15%) sepia(72%) saturate(4828%) hue-rotate(354deg) brightness(105%) contrast(124%);
 }
