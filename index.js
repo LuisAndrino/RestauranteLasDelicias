@@ -128,8 +128,15 @@ const btnAgregar8 = document.querySelector(".btn-agregar8")
 const btnAgregar9 = document.querySelector(".btn-agregar9")
 
 let carritoTotal = 0;
+let carritoCantidad = document.querySelector(".carrito-cantidad");
+let carTotal;
 
 function agregarPlatoAlCarrito(plato) {
+
+    function actualizarContadorCarrito() {
+      carTotal = carritoClick.childElementCount - 1;
+      carritoCantidad.textContent = carTotal;
+    }
 
     function actualizarTotal() {
       const pTotal = document.querySelector(".vacio");
@@ -189,6 +196,7 @@ function agregarPlatoAlCarrito(plato) {
       div.remove();
       carritoTotal = carritoTotal - plato.precio * span.textContent;
       actualizarTotal();
+      actualizarContadorCarrito();
     });
 
     if (carritoClick.innerHTML.includes(plato.nombre)) {
@@ -203,6 +211,7 @@ function agregarPlatoAlCarrito(plato) {
     carritoTotal = carritoTotal + plato.precio;
     console.log(carritoTotal);
     actualizarTotal();
+    actualizarContadorCarrito();
   };
 
 btnAgregar1.addEventListener("click", () => {
