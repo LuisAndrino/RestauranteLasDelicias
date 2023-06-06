@@ -222,3 +222,8 @@ for (let i = 1; i <= 9; i++) {
     agregarPlatoAlCarrito(platos[i-1]);
   });
 }
+
+//TODO:
+//Local storage
+//Vistas mobiles y tablets
+//Animaciones
