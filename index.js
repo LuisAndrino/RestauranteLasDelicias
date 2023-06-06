@@ -19,30 +19,39 @@ const plato9 = document.querySelector(".plato9")
 const platos = [{
     nombre: plato1.querySelector("p").textContent,
     img: plato1.querySelector("img").src,
+    precio: 100,
 }, {
     nombre: plato2.querySelector("p").textContent,
     img: plato2.querySelector("img").src,
+    precio: 200,
 }, {
     nombre: plato3.querySelector("p").textContent,
     img: plato3.querySelector("img").src,
+    precio: 300,
 }, {
     nombre: plato4.querySelector("p").textContent,
     img: plato4.querySelector("img").src,
+    precio: 400,
 }, {
     nombre: plato5.querySelector("p").textContent,
     img: plato5.querySelector("img").src,
+    precio: 500,
 }, {
     nombre: plato6.querySelector("p").textContent,
     img: plato6.querySelector("img").src,
+    precio: 600,
 }, {
     nombre: plato7.querySelector("p").textContent,
     img: plato7.querySelector("img").src,
+    precio: 700,
 }, {
     nombre: plato8.querySelector("p").textContent,
     img: plato8.querySelector("img").src,
-}, {
+    precio: 800,
+  }, {
     nombre: plato9.querySelector("p").textContent,
     img: plato9.querySelector("img").src,
+    precio: 900,
 }
 ]
 
@@ -118,7 +127,19 @@ const btnAgregar7 = document.querySelector(".btn-agregar7")
 const btnAgregar8 = document.querySelector(".btn-agregar8")
 const btnAgregar9 = document.querySelector(".btn-agregar9")
 
-function agregarPlatoAlCarrito(costo, plato) {
+let carritoTotal = 0;
+
+function agregarPlatoAlCarrito(plato) {
+
+    function actualizarTotal() {
+      const pTotal = document.querySelector(".vacio");
+      if(carritoClick.childElementCount > 1){
+        pTotal.textContent = `Total: $${carritoTotal}`;
+      } else {
+        pTotal.textContent = "Carrito vacio";
+      }
+    }
+
     const div = document.createElement("div");
     div.classList.add("carrito-menu");
     const img = document.createElement("img");
@@ -139,32 +160,35 @@ function agregarPlatoAlCarrito(costo, plato) {
     const p2 = document.createElement("p");
     p2.textContent = `Precio: `;
     const precio = document.createElement("span");
-    precio.textContent = costo;
+    precio.textContent = plato.precio;
     precio.classList.add("precio");
 
     const btnEliminar = document.createElement("button");
     btnEliminar.textContent = "Eliminar";
 
-    btn1.addEventListener("click", (event) => {
+    btn1.addEventListener("click", () => {
       if (span.textContent >= 1) {
         span.textContent = Number(span.textContent) - 1;
-        precio.textContent = costo * span.textContent;
+        precio.textContent = plato.precio * span.textContent;
+        carritoTotal = carritoTotal - plato.precio;
+        actualizarTotal();
     }
-      event.stopPropagation();
     });
 
-    btn2.addEventListener("click", (event) => {
+    btn2.addEventListener("click", () => {
       span.textContent = Number(span.textContent) + 1;
-      event.stopPropagation();
-      precio.textContent = costo * span.textContent;
+      precio.textContent = plato.precio * span.textContent;
+      carritoTotal = carritoTotal + plato.precio;
+      actualizarTotal();
     });
 
     div2.append(btn1, span, btn2, p2, precio);
     div.append(btnEliminar, img, p, div2);
 
-    btnEliminar.addEventListener("click", (event) => {
+    btnEliminar.addEventListener("click", () => {
       div.remove();
-      event.stopPropagation();
+      carritoTotal = carritoTotal - plato.precio * span.textContent;
+      actualizarTotal();
     });
 
     if (carritoClick.innerHTML.includes(plato.nombre)) {
@@ -174,54 +198,47 @@ function agregarPlatoAlCarrito(costo, plato) {
     }
 
     //Total
-      function Total(){
-      const vacio = document.querySelector(".vacio");
-      vacio.innerHTML = "Total: ";
-      let suma = [];
-      for(let i=0; i < document.getElementsByClassName("precio").length; i++){
-        suma.push(Number(document.getElementsByClassName("precio")[i].innerHTML))
-      }
-      sumaTotal.innerHTML = suma.reduce((a,b) => a + b, 0);
-    }
-
-    Total();
-    total.appendChild(sumaTotal);
+    //TODO:
+    //Hacer que el total funcione correctamente
+    carritoTotal = carritoTotal + plato.precio;
+    console.log(carritoTotal);
+    actualizarTotal();
   };
 
 btnAgregar1.addEventListener("click", () => {
-  agregarPlatoAlCarrito(1000, platos[0]);
+  agregarPlatoAlCarrito(platos[0]);
   
 });
 btnAgregar2.addEventListener("click", () => {
-  agregarPlatoAlCarrito(2000, platos[1]);
+  agregarPlatoAlCarrito(platos[1]);
   
 });
 btnAgregar3.addEventListener("click", () => {
-  agregarPlatoAlCarrito(3000, platos[2]);
+  agregarPlatoAlCarrito(platos[2]);
   
 });
 btnAgregar4.addEventListener("click", () => {
-  agregarPlatoAlCarrito(4000, platos[3]);
+  agregarPlatoAlCarrito(platos[3]);
   
 });
 btnAgregar5.addEventListener("click", () => {
-  agregarPlatoAlCarrito(5000, platos[4]);
+  agregarPlatoAlCarrito(platos[4]);
   
 });
 btnAgregar6.addEventListener("click", () => {
-  agregarPlatoAlCarrito(6000, platos[5]);
+  agregarPlatoAlCarrito(platos[5]);
   
 });
 btnAgregar7.addEventListener("click", () => {
-  agregarPlatoAlCarrito(2000, platos[6]);
+  agregarPlatoAlCarrito(platos[6]);
   
 });
 btnAgregar8.addEventListener("click", () => {
-  agregarPlatoAlCarrito(3000, platos[7]);
+  agregarPlatoAlCarrito(platos[7]);
   
 });
 btnAgregar9.addEventListener("click", () => {
-  agregarPlatoAlCarrito(4000, platos[8]);
+  agregarPlatoAlCarrito(platos[8]);
   
 });
 
