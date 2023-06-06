@@ -20,38 +20,56 @@ const platos = [{
     nombre: plato1.querySelector("p").textContent,
     img: plato1.querySelector("img").src,
     precio: 100,
+    cantidad: 1,
+    total: function(){return this.cantidad * this.precio},
 }, {
     nombre: plato2.querySelector("p").textContent,
     img: plato2.querySelector("img").src,
     precio: 200,
+    cantidad: 1,
+    total: function(){return this.cantidad * this.precio},
 }, {
     nombre: plato3.querySelector("p").textContent,
     img: plato3.querySelector("img").src,
     precio: 300,
+    cantidad: 1,
+    total: function(){return this.cantidad * this.precio},
 }, {
     nombre: plato4.querySelector("p").textContent,
     img: plato4.querySelector("img").src,
     precio: 400,
+    cantidad: 1,
+    total: function(){return this.cantidad * this.precio},
 }, {
     nombre: plato5.querySelector("p").textContent,
     img: plato5.querySelector("img").src,
     precio: 500,
+    cantidad: 1,
+    total: function(){return this.cantidad * this.precio},
 }, {
     nombre: plato6.querySelector("p").textContent,
     img: plato6.querySelector("img").src,
     precio: 600,
+    cantidad: 1,
+    total: function(){return this.cantidad * this.precio},
 }, {
     nombre: plato7.querySelector("p").textContent,
     img: plato7.querySelector("img").src,
     precio: 700,
+    cantidad: 1,
+    total: function(){return this.cantidad * this.precio},
 }, {
     nombre: plato8.querySelector("p").textContent,
     img: plato8.querySelector("img").src,
     precio: 800,
+    cantidad: 1,
+    total: function(){return this.cantidad * this.precio},
   }, {
     nombre: plato9.querySelector("p").textContent,
     img: plato9.querySelector("img").src,
     precio: 900,
+    cantidad: 1,
+    total: function(){return this.cantidad * this.precio},
 }
 ]
 
@@ -176,18 +194,23 @@ function agregarPlatoAlCarrito(plato) {
     
     btn1.addEventListener("click", () => {
       if (span.textContent >= 1) {
-        span.textContent = Number(span.textContent) - 1;
-        precio.textContent = plato.precio * span.textContent;
+        plato.cantidad = plato.cantidad - 1;
+        span.textContent = plato.cantidad;
+        precio.textContent = plato.total();
         carritoTotal = carritoTotal - plato.precio;
         actualizarTotal();
+        console.log(plato)
       }
     });
     
+    
     btn2.addEventListener("click", () => {
-      span.textContent = Number(span.textContent) + 1;
-      precio.textContent = plato.precio * span.textContent;
+      ++plato.cantidad;
+      span.textContent = plato.cantidad;
+      precio.textContent = plato.total();
       carritoTotal = carritoTotal + plato.precio;
       actualizarTotal();
+      console.log(plato)
     });
 
     div2.append(btn1, span, btn2, p2, precio);
@@ -206,12 +229,11 @@ function agregarPlatoAlCarrito(plato) {
       alert("Este plato ya se encuentra en el carrito");
     } else {
       carritoClick.appendChild(div);
+      carritoTotal = carritoTotal + plato.precio;
+      actualizarTotal();
+      actualizarContadorCarrito();
+      
     }
-    
-    
-    carritoTotal = carritoTotal + plato.precio;
-    actualizarTotal();
-    actualizarContadorCarrito();
   };
   
 
