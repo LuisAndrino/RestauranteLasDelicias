@@ -208,7 +208,7 @@ nav{
     .carrito-click{
         background-color: white;
         border: 2px solid black;
-        width: 500px;
+        width: 80%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -218,10 +218,10 @@ nav{
     .carrito-menu{
         width: 100%;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         margin-bottom: 20px;
-        
+        flex-wrap: wrap;
     }
 
     .carrito-menu img{
@@ -240,7 +240,7 @@ nav{
     }
 
     .total{
-        width: 500px;
+        width: 101%;
         display: flex;
         justify-content: space-around;
         border: 2px solid black;
