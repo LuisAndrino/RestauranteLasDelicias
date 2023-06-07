@@ -151,6 +151,7 @@ const getTotal = JSON.parse(localStorage.getItem("platos"));
 let carritoTotal = 0;
 for(t of getTotal){
   carritoTotal = carritoTotal + t.precio * t.cantidad;
+  console.log(carritoTotal);
 }
 
 function agregarPlatoAlCarrito(plato) {
@@ -238,8 +239,7 @@ function agregarPlatoAlCarrito(plato) {
       alert("Este plato ya se encuentra en el carrito");
     } else {
       carritoClick.appendChild(div);
-      carritoTotal = carritoTotal + plato.precio;
-      actualizarContadorCarrito();  
+      actualizarContadorCarrito();
       agregarPlatoAlLocalStorage(plato);
       actualizarTotal();
     }
@@ -300,3 +300,4 @@ for (let i = 1; i <= 9; i++) {
 
 
 //TODO: Arreglar el TOTAL del carrito
+//Diseño responsive
