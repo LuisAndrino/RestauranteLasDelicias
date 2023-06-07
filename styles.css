@@ -190,14 +190,14 @@ nav{
     }
 
     .carrito-img{
-        width: 30px;
+        width: 80%;
         height: 30px;
     }
 
     .carrito-cantidad{
         position: absolute;
         height: 20px;
-        width: 20px;
+        width: 7%;
         background-color: red;
         border-radius: 500%;
         color: white;
