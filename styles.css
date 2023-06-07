@@ -163,16 +163,17 @@ nav{
         width: 100%;
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         background-color: #ebecee;
         border: 2px solid black;
     }
 
     .titulo{
-        font-size: 90%;
+        width: 70%;
+        font-size: 70%;
         font-weight: bold;
-        margin: 0 10px;
+        margin-right: 10px;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -205,8 +206,6 @@ nav{
     }
 
     .carrito-click{
-        position: absolute;
-        right: 0;
         background-color: white;
         border: 2px solid black;
         width: 500px;
