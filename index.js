@@ -144,19 +144,25 @@ const btnAgregar6 = document.querySelector(".btn-agregar6")
 const btnAgregar7 = document.querySelector(".btn-agregar7")
 const btnAgregar8 = document.querySelector(".btn-agregar8")
 const btnAgregar9 = document.querySelector(".btn-agregar9")
-
-let carritoTotal = 0;
 let carritoCantidad = document.querySelector(".carrito-cantidad");
 let carTotal;
 
+const getTotal = JSON.parse(localStorage.getItem("platos"));
+let carritoTotal = 0;
+for(t of getTotal){
+  carritoTotal = carritoTotal + t.precio * t.cantidad;
+}
+
 function agregarPlatoAlCarrito(plato) {
-
+  
+  
   function actualizarContadorCarrito() {
-      carTotal = carritoClick.childElementCount - 1;
-      carritoCantidad.textContent = carTotal;
-    }
+    carTotal = carritoClick.childElementCount - 1;
+    carritoCantidad.textContent = carTotal;
+  }
+  
+  function actualizarTotal() {
 
-    function actualizarTotal() {
       const pTotal = document.querySelector(".vacio");
       if(carritoClick.childElementCount > 1){
         pTotal.textContent = `Total: Q${carritoTotal}`;
@@ -178,14 +184,14 @@ function agregarPlatoAlCarrito(plato) {
     btn1.textContent = "-";
     const span = document.createElement("span");
     span.classList.add("cantidad");
-    span.textContent = 1;
+    span.textContent = plato.cantidad;
     const btn2 = document.createElement("button");
     btn2.classList.add("btn-mas");
     btn2.textContent = "+";
     const p2 = document.createElement("p");
     p2.textContent = `Precio: `;
     const precio = document.createElement("span");
-    precio.textContent = plato.precio;
+    precio.textContent = plato.precio * plato.cantidad;
     precio.classList.add("precio");
     
     const btnEliminar = document.createElement("img");
@@ -196,10 +202,11 @@ function agregarPlatoAlCarrito(plato) {
       if (span.textContent >= 1) {
         plato.cantidad = plato.cantidad - 1;
         span.textContent = plato.cantidad;
-        precio.textContent = plato.total();
+        precio.textContent = plato.cantidad * plato.precio;
         carritoTotal = carritoTotal - plato.precio;
-        actualizarTotal();
         console.log(plato)
+        agregarPlatoAlLocalStorage(plato);
+        actualizarTotal();
       }
     });
     
@@ -207,10 +214,11 @@ function agregarPlatoAlCarrito(plato) {
     btn2.addEventListener("click", () => {
       ++plato.cantidad;
       span.textContent = plato.cantidad;
-      precio.textContent = plato.total();
+      precio.textContent = plato.cantidad * plato.precio;
       carritoTotal = carritoTotal + plato.precio;
-      actualizarTotal();
       console.log(plato)
+      agregarPlatoAlLocalStorage(plato)
+      actualizarTotal();
     });
 
     div2.append(btn1, span, btn2, p2, precio);
@@ -221,8 +229,9 @@ function agregarPlatoAlCarrito(plato) {
     btnEliminar.addEventListener("click", () => {
       div.remove();
       carritoTotal = carritoTotal - plato.precio * span.textContent;
-      actualizarTotal();
       actualizarContadorCarrito();
+      eliminarPlatoDelLocalStorage(plato);
+      actualizarTotal();
     });
     
     if (carritoClick.innerHTML.includes(plato.nombre)) {
@@ -230,12 +239,56 @@ function agregarPlatoAlCarrito(plato) {
     } else {
       carritoClick.appendChild(div);
       carritoTotal = carritoTotal + plato.precio;
+      actualizarContadorCarrito();  
+      agregarPlatoAlLocalStorage(plato);
       actualizarTotal();
-      actualizarContadorCarrito();
-      
     }
-  };
+    
+  //Agregar plato al local storage  
+  function agregarPlatoAlLocalStorage(plato) {
+  let platosLocalStorage = JSON.parse(localStorage.getItem("platos")) || [];
+
+  // Buscar si el plato ya existe en el arreglo
+  const index = platosLocalStorage.findIndex((p) => p.nombre === plato.nombre);
+
+  if (index !== -1) {
+    // Si el plato ya existe, reemplazarlo por el nuevo plato
+    platosLocalStorage[index] = plato;
+  } else {
+    // Si el plato no existe, agregarlo al arreglo
+    platosLocalStorage.push(plato);
+  }
+
+  localStorage.setItem("platos", JSON.stringify(platosLocalStorage));
+}
+
+
+  //Eliminar plato del local storage
+  function eliminarPlatoDelLocalStorage(plato) {
+    let platosLocalStorage = JSON.parse(localStorage.getItem("platos")) || [];
+
+    // Buscar si el plato ya existe en el arreglo
+    const index = platosLocalStorage.findIndex((p) => p.nombre === plato.nombre);
+
+    if (index !== -1) {
+      // Si el plato ya existe, reemplazarlo por el nuevo plato
+      platosLocalStorage.splice(index, 1);
+      localStorage.setItem("platos", JSON.stringify(platosLocalStorage));
+    } 
+}
+
+
+}
   
+const platosLocalStorage = [];
+const getLocalStorage = JSON.parse(localStorage.getItem("platos"));
+if(getLocalStorage){
+  for (local of getLocalStorage){
+    agregarPlatoAlCarrito(local);
+}
+}
+
+console.log(getLocalStorage);
 
 
 for (let i = 1; i <= 9; i++) {
@@ -245,7 +298,5 @@ for (let i = 1; i <= 9; i++) {
   });
 }
 
-//TODO:
-//Local storage
-//Vistas mobiles y tablets
-//Animaciones
+
+//TODO: Arreglar el TOTAL del carrito
