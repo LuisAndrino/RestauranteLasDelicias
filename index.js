@@ -149,10 +149,12 @@ let carTotal;
 
 const getTotal = JSON.parse(localStorage.getItem("platos"));
 let carritoTotal = 0;
-for(t of getTotal){
-  carritoTotal = carritoTotal + t.precio * t.cantidad;
-  console.log(carritoTotal);
+if(getTotal){
+  for(t of getTotal){
+    carritoTotal = carritoTotal + t.precio * t.cantidad;
+  }
 }
+
 
 function agregarPlatoAlCarrito(plato) {
   
