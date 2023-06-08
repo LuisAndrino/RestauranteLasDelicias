@@ -147,32 +147,27 @@ const btnAgregar9 = document.querySelector(".btn-agregar9")
 let carritoCantidad = document.querySelector(".carrito-cantidad");
 let carTotal;
 
-const getTotal = JSON.parse(localStorage.getItem("platos"));
 let carritoTotal = 0;
-if(getTotal){
-  for(t of getTotal){
-      carritoTotal = carritoTotal + t.precio * t.cantidad;
-  }
+
+
+function actualizarContadorCarrito() {
+  carTotal = carritoClick.childElementCount - 1;
+  carritoCantidad.textContent = carTotal;
 }
 
+function actualizarTotal() {
+
+    const pTotal = document.querySelector(".vacio");
+    if(carritoClick.childElementCount > 1){
+      pTotal.textContent = `Total: Q${carritoTotal}`;
+    } else {
+      pTotal.textContent = "Carrito vacio";
+    }
+  }
 
 function agregarPlatoAlCarrito(plato) {
   
   
-  function actualizarContadorCarrito() {
-    carTotal = carritoClick.childElementCount - 1;
-    carritoCantidad.textContent = carTotal;
-  }
-  
-  function actualizarTotal() {
-
-      const pTotal = document.querySelector(".vacio");
-      if(carritoClick.childElementCount > 1){
-        pTotal.textContent = `Total: Q${carritoTotal}`;
-      } else {
-        pTotal.textContent = "Carrito vacio";
-      }
-    }
 
     const div = document.createElement("div");
     div.classList.add("carrito-menu");
@@ -279,19 +274,21 @@ function agregarPlatoAlCarrito(plato) {
       localStorage.setItem("platos", JSON.stringify(platosLocalStorage));
     } 
 }
-
-
 }
-  
-const platosLocalStorage = [];
+ 
+//Traer datos del local storage
+let totalLocal = 0;
+
 const getLocalStorage = JSON.parse(localStorage.getItem("platos"));
 if(getLocalStorage){
   for (local of getLocalStorage){
+    totalLocal += local.precio * local.cantidad;  
     agregarPlatoAlCarrito(local);
+    console.log(totalLocal)
+  }
+  carritoTotal =  totalLocal;
+  actualizarTotal();
 }
-}
-
-console.log(getLocalStorage);
 
 
 for (let i = 1; i <= 9; i++) {
