@@ -151,7 +151,7 @@ const getTotal = JSON.parse(localStorage.getItem("platos"));
 let carritoTotal = 0;
 if(getTotal){
   for(t of getTotal){
-    carritoTotal = carritoTotal + t.precio * t.cantidad;
+      carritoTotal = carritoTotal + t.precio * t.cantidad;
   }
 }
 
@@ -241,6 +241,7 @@ function agregarPlatoAlCarrito(plato) {
       alert("Este plato ya se encuentra en el carrito");
     } else {
       carritoClick.appendChild(div);
+      carritoTotal = carritoTotal + plato.precio;
       actualizarContadorCarrito();
       agregarPlatoAlLocalStorage(plato);
       actualizarTotal();
@@ -248,7 +249,7 @@ function agregarPlatoAlCarrito(plato) {
     
   //Agregar plato al local storage  
   function agregarPlatoAlLocalStorage(plato) {
-  let platosLocalStorage = JSON.parse(localStorage.getItem("platos")) || [];
+  let platosLocalStorage = JSON.parse(localStorage.getItem("platos"));
 
   // Buscar si el plato ya existe en el arreglo
   const index = platosLocalStorage.findIndex((p) => p.nombre === plato.nombre);
@@ -267,7 +268,7 @@ function agregarPlatoAlCarrito(plato) {
 
   //Eliminar plato del local storage
   function eliminarPlatoDelLocalStorage(plato) {
-    let platosLocalStorage = JSON.parse(localStorage.getItem("platos")) || [];
+    let platosLocalStorage = JSON.parse(localStorage.getItem("platos"));
 
     // Buscar si el plato ya existe en el arreglo
     const index = platosLocalStorage.findIndex((p) => p.nombre === plato.nombre);
