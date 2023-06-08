@@ -4,6 +4,27 @@
     box-sizing: border-box;
 }
 
+
+body{
+        background-color: #bcccde;
+}
+
+.btn-agregar{
+    background-color: #b19ea3; /* Color de fondo */
+    border: none; /* Sin borde */
+    color: black; /* Color de texto */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Sin subrayado */
+    cursor: pointer; /* Cambiar el cursor al pasar por encima */
+    border-radius: 10px; /* Radio de borde */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* Sombra */
+    height: 30px;
+    padding: 0px 20px;
+}
+    .btn-agregar:hover{
+        background-color: #ebecee;
+    }
+
 nav{
     width: 100%;
     display: flex;
@@ -101,7 +122,7 @@ nav{
     display: flex;  
     flex-direction: row;
     justify-content: space-evenly;
-    background-color: red;
+    background-color: #def2ef;
     cursor: pointer;
 }
 
@@ -158,6 +179,26 @@ nav{
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+    }
+
+    body{
+        background-color: #bcccde;
+    }
+
+    .btn-agregar{
+    background-color: #b19ea3; /* Color de fondo */
+    border: none; /* Sin borde */
+    color: black; /* Color de texto */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Sin subrayado */
+    cursor: pointer; /* Cambiar el cursor al pasar por encima */
+    border-radius: 10px; /* Radio de borde */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* Sombra */
+    height: 30px;
+    padding: 0px 20px;
+}
+    .btn-agregar:hover{
+        background-color: #ebecee;
     }
 
     nav{
@@ -255,7 +296,7 @@ nav{
         display: flex;  
         flex-direction: row;
         justify-content: space-evenly;
-        background-color: red;
+        background-color: #def2ef;
         cursor: pointer;
     }
 
@@ -308,12 +349,29 @@ nav{
 
 /*Vista Tablet*/
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 480px) and (max-width: 768px) {
     *{
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
+
+    .btn-agregar{
+    background-color: #b19ea3; /* Color de fondo */
+    border: none; /* Sin borde */
+    color: black; /* Color de texto */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Sin subrayado */
+    cursor: pointer; /* Cambiar el cursor al pasar por encima */
+    border-radius: 10px; /* Radio de borde */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* Sombra */
+    height: 30px;
+    padding: 0px 20px;
+}
+    .btn-agregar:hover{
+        background-color: #ebecee;
+    }
+
 
     body{
         background-color: #bcccde;
@@ -345,7 +403,7 @@ nav{
     }
 
     .logo{
-        width: 35%;
+        width: 25%;
         height: 100px;
     }
 
@@ -417,7 +475,7 @@ nav{
         justify-content: space-evenly;
         align-items: center;
 
-        background-color: red;
+        background-color: #def2ef;
         cursor: pointer;
     }
 
