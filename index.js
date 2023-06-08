@@ -298,6 +298,3 @@ for (let i = 1; i <= 9; i++) {
   });
 }
 
-
-//TODO: Arreglar el TOTAL del carrito
-//Diseño responsive

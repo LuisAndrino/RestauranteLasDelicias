@@ -142,6 +142,13 @@ nav{
     height: 400px;
     padding: 10px 10px;
     border-radius: 5%;
+    opacity: 0;
+    transition-duration: 2s;
+    transition-delay: 2s;
+}
+
+.animacion{
+    opacity: 1;
 }
 
 .menu-hora{
@@ -301,7 +308,8 @@ nav{
     }
 
     .change{
-        background-color: #ebecee;
+        background-color: papayawhip;
+        font-size: large;
     }
 
     .menu-eleccion h1{
